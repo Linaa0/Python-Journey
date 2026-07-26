@@ -14,3 +14,4 @@ while True:
       print('Too high')   
     else:
       print('Hooray! You have got it')
+      break
