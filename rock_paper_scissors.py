@@ -7,6 +7,7 @@ while True:
     choice= input('Rock, Paper, Scissors (r/p/s): ').lower()
     if choice not in choices:
         print('Invalid choice!')
+        continue
 
     computer_choice= random.choice(choices)    
 
@@ -23,6 +24,6 @@ while True:
     else :
         print('You lose!')   
 
-    want_continue= input('Continue? (y/n)') .lower() 
+    want_continue= input('Continue? (y/n): ') .lower() 
     if want_continue=='n':
         break   
