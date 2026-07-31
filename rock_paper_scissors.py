@@ -26,7 +26,7 @@ def determine_the_winner(choice, computer_choice):
     else :
         print('You lose!')   
 
-    def play_game():
+def play_game():
       while True:
         choice= get_user_choice()
         computer_choice= random.choice(choices)  
@@ -35,3 +35,6 @@ def determine_the_winner(choice, computer_choice):
         want_continue= input('Continue? (y/n): ') .lower() 
         if want_continue=='n':
              break   
+
+
+play_game()
