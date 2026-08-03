@@ -12,8 +12,8 @@ def main():
     tools= []
     agent_executor= create_agent(model, tools)
 
-    print("Wlecome! I am your AI assistant, Type 'quit' to exist.")
-    print("You can ask m to perform calculatiomns or chat with me.")
+    print("Welcome! I am your AI assistant, Type 'quit' to exist.")
+    print("You can ask me to perform calculations or chat with me.")
 
     while True:
         user_input=input("\nYou: ").strip()
@@ -29,4 +29,9 @@ def main():
             if "agent" in chunk and "messages" in chunk["agent"]:
                 for message in chunk["agent"]["messages"]:
                       print(message.content, end="")
+
+        print()
+
+if __name__== "__main__":
+     main()        
 
