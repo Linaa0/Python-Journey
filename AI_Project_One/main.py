@@ -1,21 +1,22 @@
 
 from langchain_core.messages import HumanMessage
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.tools import tool
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 from dotenv import load_dotenv
 
 load_dotenv()
 
 def main():
-    model=ChatOpenAI(temperature=0)
-    tools= []
-    agent_executor= create_react_agent(model, tools)
+     model = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
 
-    print("Welcome! I am your AI assistant, Type 'quit' to exist.")
-    print("You can ask me to perform calculations or chat with me.")
+     tools= []
+     agent_executor= create_agent(model, tools)
 
-    while True:
+     print("Welcome! I am your AI assistant, Type 'quit' to exist.")
+     print("You can ask me to perform calculations or chat with me.")
+
+     while True:
         user_input=input("\nYou: ").strip()
 
         if user_input=='quit':
@@ -23,12 +24,20 @@ def main():
 
         print("\n Assistant: ", end="")
 
-        for chunk in agent_executor.stream(
+        response= agent_executor.invoke(
             {"messages": [HumanMessage(content=user_input)]}
-        ):
-            if "agent" in chunk and "messages" in chunk["agent"]:
-                for message in chunk["agent"]["messages"]:
-                      print(message.content, end="")
+        )
+        latest_message= response["messages"][-1]
+        
+        if isinstance(latest_message.content, list) and len(latest_message.content) > 0:
+            if "text" in latest_message.content[0]:
+                print(latest_message.content[0]["text"])
+        else:
+            # Fallback if it returns a standard text string
+            print(latest_message.content)
+        # print(latest_message.content, end="")
+                # for message in chunk["agent"]["messages"]:
+                #       print(message.content, end="")
 
         print()
 
