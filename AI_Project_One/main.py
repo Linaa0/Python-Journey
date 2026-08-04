@@ -13,10 +13,15 @@ def calculator(a:float,b:float)-> str:
     print("Tool has been called")
     return f"The sum of {a} and {b} is {a+b}"
 
+def say_Hello(name:str)-> str:
+    """Useful for greeting people"""
+    print("Tool has been called")
+    return f"Hello, {name}"
+
 def main():
      model = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
 
-     tools= [calculator]
+     tools= [calculator, say_Hello]
      agent_executor= create_agent(model, tools)
 
      print("Welcome! I am your AI assistant, Type 'quit' to exist.")
