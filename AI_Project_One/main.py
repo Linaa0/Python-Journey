@@ -28,10 +28,14 @@ def main():
             {"messages": [HumanMessage(content=user_input)]}
         )
         latest_message= response["messages"][-1]
-        
-        if isinstance(latest_message.content, list) and len(latest_message.content) > 0:
-            if "text" in latest_message.content[0]:
-                print(latest_message.content[0]["text"])
+
+        if isinstance(latest_message.content, list):
+            for item in latest_message.content:
+                # Look at the active loop item, not an index row!
+                if isinstance(item, dict) and "text" in item:
+                    print(item["text"], end="")
+            print() # Print a final clean newline when done
+            
         else:
             # Fallback if it returns a standard text string
             print(latest_message.content)
