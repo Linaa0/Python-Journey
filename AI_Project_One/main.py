@@ -7,10 +7,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+@tool 
+def calculator(a:float,b:float)-> str:
+    """Useful for performing basic arithmetic calculations with numbers"""
+    print("Tool has been called")
+    return f"The sum of {a} and {b} is {a+b}"
+
 def main():
      model = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
 
-     tools= []
+     tools= [calculator]
      agent_executor= create_agent(model, tools)
 
      print("Welcome! I am your AI assistant, Type 'quit' to exist.")
