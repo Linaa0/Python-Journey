@@ -1,4 +1,8 @@
 {
     "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
-    "python.terminal.activateEnvironment": true
+    "python.terminal.activateEnvironment": true,
+    "workbench.colorCustomizations": {
+        "window.activeBorder": "#653b3c",
+        "window.inactiveBorder": "#653b3c"
+    }
 }

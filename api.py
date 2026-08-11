@@ -1,13 +1,13 @@
 import requests
 import json 
-from IPython.display import Markdown, display
+# from IPython.display import Markdown, display
 
 question="What is the weather today in Kigali?"
 
-url= "https://api.ejplabs.com/api/v1/subiza"
+url= "https://api.ejolabs.com/api/v1/subiza"
 
 headers= {
-   "X-API-Key": ""
+   "X-API-Key": "ejochat_1_E32pR40CaEQHL6e2zJ0M17LHxUxL-FFWKqYSrpmg8"
  }
 
 data= {
@@ -25,5 +25,9 @@ response= requests.post(
     headers=headers,
     json=data
 )
+result = response.json()
 
-print(response.json())
+clean_text = result['choices'][0]['message']['content']
+
+print("\n--- AI Response ---")
+print(clean_text)
