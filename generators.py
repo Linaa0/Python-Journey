@@ -1,11 +1,13 @@
 
 def count_to(n):
+    # numbers=[]
     count=1
     while count<= n:
-        yield count
+        # numbers.append(count)
+        yield number
         count+=1
 
-  
+    # return numbers
 
 number=int(input("Enter the number to count to: "))
 
